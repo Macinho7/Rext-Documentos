@@ -8,6 +8,7 @@ const usuariosParaBan = new Set<string>();
 async function bootstrap() {
   const app = await NestFactory.create(GertModule, { cors: true });
   const usuariosS = app.get(AppService);
+  app.use(helmet());
   app.use(
     rateLimit({
       windowMs: 2 * 60 * 1000,
