@@ -1,0 +1,64 @@
+org: venix
+app: rextapp
+service: rextservice
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  timeout: 100
+
+functions:
+  CriaTabela:
+    handler: DB/criaTabela.createTable
+    events:
+      - httpApi:
+          path: criaTabela
+          method: post
+  criarUsuario:
+    handler: Usuario/manipulaUsuario.CriaUsuario
+    events:
+      - httpApi:
+          path: criaUsuario
+          method: post
+  listarUsuarios:
+    handler: Usuario/manipulaUsuario.ListarUsuarios
+    events:
+      - httpApi:
+          path: listarUsuarios
+          method: get
+  listarUsuariosBanidos:
+    handler: Usuario/manipulaUsuario.listarUsuariosBanidos
+    events:
+      - httpApi:
+          path: listarUsuariosBanidos
+          method: get
+  ListarUsuario:
+    handler: Usuario/manipulaUsuario.ListarUsuario
+    events:
+      - httpApi:
+          path: listarUsuario/{id}
+          method: get
+  atualizarUsuario:
+    handler: Usuario/manipulaUsuario.atualizarUsuario
+    events:
+      - httpApi:
+          path: atualizaUsuario/{id}
+          method: patch
+  deletaUsuario:
+    handler: Usuario/manipulaUsuario.deletaUsuario
+    events:
+      - httpApi:
+          path: deletaUsuario/{id}
+          method: delete
+  login:
+    handler: Usuario/manipulaUsuario.LoginUsuario
+    events:
+      - httpApi:
+          path: loginUsuario/{id}
+          method: post
+custom:
+  serverless-offline:
+    httpPort: 3001
+
+plugins:
+  - serverless-offline
