@@ -36,7 +36,7 @@
     "body-parser": "^1.20.2",
     "dotenv": "^16.4.5",
     "express-rate-limit": "^7.4.0",
-    "helmet": "^7.0.0",
+    "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
     "mammoth": "^1.8.0",
     "marked": "^14.0.0",
